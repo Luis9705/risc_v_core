@@ -16,8 +16,8 @@
 
   function void reg_file_cov::write(reg_file_seq_item t);
     `uvm_info(get_full_name(), "[REG_FILE] Received item in Subscriber", UVM_LOW)
-    `uvm_info(get_full_name(), $sformatf("\n[REG_FILE] Packet Data:\n\twe: %0d,\n\taddr: %0d,\n\twdata: %0d,\n\trdata: %0d",
-      t.we, t.addr, t.wdata, t.rdata), UVM_LOW)
+    // `uvm_info(get_full_name(), $sformatf("\n[REG_FILE] Packet Data:\n\twe: %0d,\n\taddr: %0d,\n\twdata: %0d,\n\trdata: %0d",
+    //   t.we, t.addr, t.wdata, t.rdata), UVM_LOW)
   endfunction
 
 `endif

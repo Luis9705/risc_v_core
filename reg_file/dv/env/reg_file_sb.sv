@@ -31,8 +31,8 @@
     forever begin
       sb_fifo.get(seq_item);
       `uvm_info(get_full_name(), "[REG_FILE] Received new item in SB", UVM_LOW)
-      `uvm_info(get_full_name(), $sformatf("\n[REG_FILE] Packet Data:\n\twe: %0d,\n\taddr: %0d,\n\twdata: %0d,\n\trdata: %0d",
-      seq_item.we, seq_item.addr, seq_item.wdata, seq_item.rdata), UVM_LOW)
+      // `uvm_info(get_full_name(), $sformatf("\n[REG_FILE] Packet Data:\n\twe: %0d,\n\taddr: %0d,\n\twdata: %0d,\n\trdata: %0d",
+      // seq_item.we, seq_item.addr, seq_item.wdata, seq_item.rdata), UVM_LOW)
     end
   endtask
 

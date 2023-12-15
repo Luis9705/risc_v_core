@@ -4,10 +4,13 @@
   interface reg_file_intf(input clk);
 
     // Signals
-    logic we;
-    logic [3:0] addr;
-    logic [7:0] wdata;
-    logic [7:0] rdata;
+    reg_addr_t   raddr_a;
+    data_t       rdata_a;
+    reg_addr_t   raddr_b;
+    data_t       rdata_b;
+    reg_addr_t   waddr;
+    data_t       wdata;
+    logic        we;
 
   endinterface
 

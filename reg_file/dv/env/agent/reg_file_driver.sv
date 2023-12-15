@@ -32,18 +32,22 @@
   task reg_file_driver::drive_task(reg_file_seq_item seq_item);
     `uvm_info(get_full_name(), "[REG_FILE] Received Sequence Item in Driver", UVM_LOW)
     @(negedge vintf.clk);
-    vintf.we <= seq_item.we;
-    vintf.addr <= seq_item.addr;
-    vintf.wdata <= seq_item.wdata;
+    vintf.raddr_a <= seq_item.raddr_a;
+    vintf.raddr_b <= seq_item.raddr_b;
+    vintf.waddr   <= seq_item.waddr;
+    vintf.wdata   <= seq_item.wdata;
+    vintf.we      <= seq_item.we;
   endtask
 
   task reg_file_driver::reset_phase(uvm_phase phase);
     super.reset_phase(phase);
     phase.raise_objection(this);
     `uvm_info(get_full_name(), "[REG_FILE] Resetting DUT from Driver", UVM_NONE)
-    vintf.we     <= 'd0;
-    vintf.addr   <= 'd0;
-    vintf.wdata  <= 'd0;
+    vintf.raddr_a <= 'd0;
+    vintf.raddr_b <= 'd0;
+    vintf.waddr   <= 'd0;
+    vintf.wdata   <= 'd0;
+    vintf.we      <= 'd0;
     @(posedge vintf.clk);
     phase.drop_objection(this);
   endtask

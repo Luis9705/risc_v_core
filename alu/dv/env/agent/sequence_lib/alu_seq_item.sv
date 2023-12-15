@@ -6,9 +6,6 @@ import common_pkg::*;
 
   class alu_seq_item extends uvm_sequence_item;
 
-    // Factory Registration
-    `uvm_object_utils(alu_seq_item)
-
     // Randomization Variables
     rand int      a;
     rand int      b;
@@ -16,6 +13,15 @@ import common_pkg::*;
     int           result;
     logic         zero;
     localparam int Range = 10000;
+
+    // Factory Registration
+    `uvm_object_utils_begin(alu_seq_item)
+      `uvm_field_int(a, UVM_DEFAULT)
+      `uvm_field_int(b, UVM_DEFAULT)
+      `uvm_field_enum(alu_op_e, alu_op, UVM_DEFAULT)
+      `uvm_field_int(result, UVM_DEFAULT)
+      `uvm_field_int(zero, UVM_DEFAULT)
+    `uvm_object_utils_end
 
     constraint operand_a_c {
 

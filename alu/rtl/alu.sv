@@ -5,28 +5,28 @@ import alu_pkg::*;
 import common_pkg::*;
 
 module alu(
-    input  data_t   data_a,
-    input  data_t   data_b,
-    input  alu_op_e alu_op,
-    output data_t   result,
-    output logic    zero
+    input  data_t   a_i,
+    input  data_t   b_i,
+    input  alu_op_e alu_op_i,
+    output data_t   result_o,
+    output logic    zero_o
     );
     
-    assign zero = result == '0;
+    assign zero_o = result_o == '0;
     
     always_comb begin
-        case (alu_op)
-            ALU_ADD  :  result = data_a + data_b;                      //Addition
-            ALU_SUB  :  result = data_a - data_b;                      //Substraction 
-            ALU_SLL  :  result = data_a << data_b;                     //Shift left logical
-            ALU_SLT  :  result = ($signed(data_a) < $signed(data_b));  //Set less than signed
-            ALU_SLTU :  result = (data_a < data_b);                    //Set less than unsigned
-            ALU_XOR  :  result = data_a ^ data_b;                      //Exclusive or
-            ALU_SRL  :  result = data_a >> data_b;                     //Shift right logical
-            ALU_SRA  :  result = data_a >>> data_b;                    //Shift right arithmetical
-            ALU_OR   :  result = data_a | data_b;                      //Or
-            ALU_AND  :  result = data_a & data_b;                      //And
-            default :  result = '0; 
+        case (alu_op_i)
+            ALU_ADD  :  result_o = a_i + b_i;                      //Addition
+            ALU_SUB  :  result_o = a_i - b_i;                      //Substraction 
+            ALU_SLL  :  result_o = a_i << b_i;                     //Shift left logical
+            ALU_SLT  :  result_o = ($signed(a_i) < $signed(b_i));  //Set less than signed
+            ALU_SLTU :  result_o = (a_i < b_i);                    //Set less than unsigned
+            ALU_XOR  :  result_o = a_i ^ b_i;                      //Exclusive or
+            ALU_SRL  :  result_o = a_i >> b_i;                     //Shift right logical
+            ALU_SRA  :  result_o = a_i >>> b_i;                    //Shift right arithmetical
+            ALU_OR   :  result_o = a_i | b_i;                      //Or
+            ALU_AND  :  result_o = a_i & b_i;                      //And
+            default :  result_o = '0; 
         endcase
     end
   endmodule : alu

@@ -9,17 +9,24 @@
   module alu_tb;
     import alu_test_pkg::*;
     import uvm_pkg::*;
+    import alu_pkg::*;
+    import common_pkg::*;
 
-    logic clk;
+    data_t   a;
+    data_t   b;
+    alu_op_e alu_op;
+    data_t   result;
+    logic    zero;
+    logic    clk;
 
     alu_intf intf(.clk(clk));
 
     alu DUT (
-      .clk(clk),
-      .we(intf.we),
-      .addr(intf.addr),
-      .wdata(intf.wdata),
-      .rdata(intf.rdata)
+      .a_i(a),
+      .b_i(b),
+      .alu_op_i(alu_op),
+      .result_o(result),
+      .zero_o(zero)
     );
 
     initial begin

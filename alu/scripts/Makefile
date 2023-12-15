@@ -117,6 +117,12 @@ else
 RTL =
 endif
 
+ifneq ("$(wildcard ../common/*.sv)","")
+COMMON = ../common/*.sv
+else
+COMMON =
+endif
+
 ifneq ("$(wildcard ../dv/tb)","")
 INCTB = +incdir+../dv/tb
 else
@@ -210,7 +216,7 @@ DELFILES = clean_linux
 endif
 
 cmp:
-	xvlog -work $(work) -i ../dv -sv $(RTL) $(SEQ_LIB) $(REG) $(INTF) $(AGT) $(ENV) $(TESTS) $(TB) -L uvm
+	xvlog -work $(work) -i ../dv -i ../../common -i ../rtl -sv $(RTL) $(SEQ_LIB) $(REG) $(INTF) $(AGT) $(ENV) $(TESTS) $(TB) $(COMMON) ../../common/common_pkg.sv ../rtl/alu_pkg.sv -L uvm
 	xelab work.$(top_tb_name) -s $(top_tb_name)_sim -L uvm -timescale 1ns/1ps -debug all
 
 run_sim_wave:

@@ -1,27 +1,34 @@
 `ifndef ALU__SV
 `define ALU__SV
 
-  module alu
-  (
-    input  logic clk,
-    input  logic we,
-    input  logic [3:0] addr,
-    input  logic [7:0] wdata,
-    output logic [7:0] rdata
-  );
+import alu_pkg::*;
+import common_pkg::*;
 
-  logic [7:0] mem [16];
-  logic [3:0] addr_reg;
-
-  always_ff @(posedge clk) begin
-    if(we) begin
-      mem[addr] <= wdata;
+module alu(
+    input  data_t   data_a,
+    input  data_t   data_b,
+    input  alu_op_e alu_op,
+    output data_t   result,
+    output logic    zero
+    );
+    
+    assign zero = result == '0;
+    
+    always_comb begin
+        case (alu_op)
+            ALU_ADD  :  result = data_a + data_b;                      //Addition
+            ALU_SUB  :  result = data_a - data_b;                      //Substraction 
+            ALU_SLL  :  result = data_a << data_b;                     //Shift left logical
+            ALU_SLT  :  result = ($signed(data_a) < $signed(data_b));  //Set less than signed
+            ALU_SLTU :  result = (data_a < data_b);                    //Set less than unsigned
+            ALU_XOR  :  result = data_a ^ data_b;                      //Exclusive or
+            ALU_SRL  :  result = data_a >> data_b;                     //Shift right logical
+            ALU_SRA  :  result = data_a >>> data_b;                    //Shift right arithmetical
+            ALU_OR   :  result = data_a | data_b;                      //Or
+            ALU_AND  :  result = data_a & data_b;                      //And
+            default :  result = '0; 
+        endcase
     end
-    addr_reg <= addr;
-  end
-
-  assign rdata = mem[addr_reg];
-
   endmodule : alu
 
 `endif

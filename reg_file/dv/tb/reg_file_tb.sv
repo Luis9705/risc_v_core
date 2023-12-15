@@ -11,15 +11,25 @@
     import uvm_pkg::*;
 
     logic clk;
+    reg_addr_t   raddr_a;
+    data_t       rdata_a;
+    reg_addr_t   raddr_b;
+    data_t       rdata_b;
+    reg_addr_t   waddr;
+    data_t       wdata;
+    logic        we;
 
     reg_file_intf intf(.clk(clk));
 
     reg_file DUT (
-      .clk(clk),
-      .we(intf.we),
-      .addr(intf.addr),
-      .wdata(intf.wdata),
-      .rdata(intf.rdata)
+      .clk_i(clk),
+      .raddr_a_i(raddr_a),
+      .rdata_a_o(rdata_a),
+      .raddr_b_i(raddr_b),
+      .rdata_b_o(rdata_b),
+      .waddr_i(waddr),
+      .wdata_i(wdata),
+      .we_i(we)
     );
 
     initial begin

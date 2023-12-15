@@ -210,12 +210,15 @@ DELFILES = clean_linux
 endif
 
 cmp:
-	xvlog -work $(work) -i ../dv -sv $(RTL) $(SEQ_LIB) $(REG) $(INTF) $(AGT) $(ENV) $(TESTS) $(TB) -L uvm
-	xelab work.$(top_tb_name) -s $(top_tb_name)_sim -L uvm -timescale 1ns/1ps -debug all
+	xvlog -work $(work) -i ../dv -i ../../common -i ../rtl -sv $(RTL) $(SEQ_LIB) $(REG) $(INTF) $(AGT) $(ENV) $(TESTS) $(TB) $(COMMON) ../../common/common_pkg.sv -L uvm
+	xelab work.$(top_tb_name) -s $(top_tb_name)_sim -L uvm -timescale 1ns/1ps -debug all -cov_db_dir ./
 
 run_sim_wave:
 	xsim -wdb dv.wdb -log session.log -t logw.tcl $(top_tb_name)_sim -testplusarg "UVM_TESTNAME=reg_file_sanity_test"
 	xsim dv.wdb -gui
+
+cov_rpt:
+	 xcrg -dir ./xsim.covdb/alu_tb_sim/  -report_format text -report_dir ./cov_rpt
 
 view_wave:
 	xsim dv.wdb -gui

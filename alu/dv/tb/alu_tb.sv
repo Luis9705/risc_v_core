@@ -12,21 +12,16 @@
     import alu_pkg::*;
     import common_pkg::*;
 
-    data_t   a;
-    data_t   b;
-    alu_op_e alu_op;
-    data_t   result;
-    logic    zero;
     logic    clk;
 
     alu_intf intf(.clk(clk));
 
     alu DUT (
-      .a_i(a),
-      .b_i(b),
-      .alu_op_i(alu_op),
-      .result_o(result),
-      .zero_o(zero)
+      .a_i(intf.a),
+      .b_i(intf.b),
+      .alu_op_i(intf.alu_op),
+      .result_o(intf.result),
+      .zero_o(intf.zero)
     );
 
     initial begin

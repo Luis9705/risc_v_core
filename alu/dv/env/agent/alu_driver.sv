@@ -33,7 +33,7 @@
     `uvm_info(get_full_name(), "[ALU] Received Sequence Item in Driver", UVM_LOW)
     @(negedge vintf.clk);
     vintf.a <= seq_item.a;
-    vintf.a <= seq_item.b;
+    vintf.b <= seq_item.b;
     vintf.alu_op <= seq_item.alu_op;
   endtask
 

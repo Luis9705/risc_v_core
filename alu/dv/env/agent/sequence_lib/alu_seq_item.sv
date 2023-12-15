@@ -17,7 +17,11 @@ import common_pkg::*;
     logic         zero;
 
     //TODO: Add constraints for data and operations
-    // constraint c1 {a inside{[0:15]};}
+    constraint shift_c {
+      if(alu_op inside {ALU_SLL, ALU_SRL, ALU_SRA}){
+        b dist {[0:`DATA_WIDTH / 2] :/ 90, [`DATA_WIDTH / 2 + 1 : `DATA_WIDTH + 1] :/ 10};
+      }
+      }
 
     extern function new(string name = "alu_seq_item");
 

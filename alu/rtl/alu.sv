@@ -1,6 +1,8 @@
 `ifndef ALU__SV
 `define ALU__SV
 
+`include "alu_pkg.sv"
+`include "common_pkg.sv"
 import alu_pkg::*;
 import common_pkg::*;
 

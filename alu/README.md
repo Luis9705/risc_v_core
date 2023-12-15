@@ -1,5 +1,14 @@
 ## alu Architecture, Design and Verification Details
 
+In RTL, values in the ALU are unsigned, so we need to be careful with signed 
+operations, such as SLT (Set less than signed) and SRA (Shift right 
+arithmetic). 
+ 
+In Testbench we are using ints, which are signed, so we need to be 
+careful with unsigned operations, such as SLTU (Set less than unsigned). 
+
+All other operations (ADD, SUB, XOR, OR, AND) don't care about the sign.
+
 ### Commands to run sanity test
 #### Without Wave Dump
 ```bash

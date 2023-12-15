@@ -10,18 +10,38 @@ import common_pkg::*;
     `uvm_object_utils(alu_seq_item)
 
     // Randomization Variables
-    rand data_t   a;
-    rand data_t   b;
+    rand int      a;
+    rand int      b;
     rand alu_op_e alu_op;
-    data_t        result;
+    int           result;
     logic         zero;
+    localparam int Range = 10000;
 
-    //TODO: Add constraints for data and operations
-    constraint shift_c {
+    constraint operand_a_c {
+
+      //Constraint to have numbers between a certain range, but also excercise middle values and corner values
+      a dist {[`MIN_VALUE : `MIN_VALUE + Range]    :/ 10,
+              [`MIN_VALUE + Range + 1 : -Range]    :/ 25,
+              [-Range + 1 : Range]                 :/ 30, 
+              [Range + 1 : `MAX_VALUE - Range]     :/ 25, 
+              [`MAX_VALUE - Range + 1: `MAX_VALUE] :/ 10};
+
+    }
+
+    constraint operand_b_c {
+
+      //If opcode is shift operation, constraint operand b to be inside the data width. 
+      //If we provide large values, result will always be 0 as shitf overflows.
       if(alu_op inside {ALU_SLL, ALU_SRL, ALU_SRA}){
         b dist {[0:`DATA_WIDTH / 2] :/ 90, [`DATA_WIDTH / 2 + 1 : `DATA_WIDTH + 1] :/ 10};
+      } else {
+        b dist {[`MIN_VALUE : `MIN_VALUE + Range]    :/ 10,
+                [`MIN_VALUE + Range + 1 : -Range]    :/ 25,
+                [-Range + 1 : Range]                 :/ 30, 
+                [Range + 1 : `MAX_VALUE - Range]     :/ 25, 
+                [`MAX_VALUE - Range + 1: `MAX_VALUE] :/ 10};
       }
-      }
+    }
 
     extern function new(string name = "alu_seq_item");
 

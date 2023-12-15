@@ -21,7 +21,7 @@
   task alu_sanity_seq::body();
     super.body();
     `uvm_info(get_full_name(), "[ALU] Starting Sanity Sequence", UVM_LOW)
-    repeat(30) begin
+    repeat(1000) begin
       // `uvm_do_with(req, {we==1;})
       `uvm_do(req)
     end

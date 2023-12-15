@@ -28,7 +28,7 @@ module alu(
             ALU_SRA  :  result_o = $signed(a_i) >>> b_i;           //Shift right arithmetical
             ALU_OR   :  result_o = a_i | b_i;                      //Or
             ALU_AND  :  result_o = a_i & b_i;                      //And
-            default :  result_o = '0; 
+            default :  result_o = '0;                              //No Op
         endcase
     end
   endmodule : alu

@@ -40,17 +40,17 @@ import common_pkg::*;
     exp_txn = alu_seq_item::type_id::create("exp_txn");
 
     case (t.alu_op)
-        ALU_ADD  :  expected_result = t.a + t.b;                      //Addition
-        ALU_SUB  :  expected_result = t.a - t.b;                      //Substraction 
-        ALU_SLL  :  expected_result = t.a << t.b;                     //Shift left logical
-        ALU_SLT  :  expected_result = ($signed(t.a) < $signed(t.b));  //Set less than signed
-        ALU_SLTU :  expected_result = (t.a < t.b);                    //Set less than unsigned
-        ALU_XOR  :  expected_result = t.a ^ t.b;                      //Exclusive or
-        ALU_SRL  :  expected_result = t.a >> t.b;                     //Shift right logical
-        ALU_SRA  :  expected_result = t.a >>> t.b;                    //Shift right arithmetical
-        ALU_OR   :  expected_result = t.a | t.b;                      //Or
-        ALU_AND  :  expected_result = t.a & t.b;                      //And
-        default :  expected_result = '0; 
+        ALU_ADD  :  expected_result = t.a + t.b;                       //Addition
+        ALU_SUB  :  expected_result = t.a - t.b;                       //Substraction 
+        ALU_SLL  :  expected_result = t.a << t.b;                      //Shift left logical
+        ALU_SLT  :  expected_result = t.a < t.b;                       //Set less than signed
+        ALU_SLTU :  expected_result = $unsigned(t.a) < $unsigned(t.b); //Set less than unsigned
+        ALU_XOR  :  expected_result = t.a ^ t.b;                       //Exclusive or
+        ALU_SRL  :  expected_result = t.a >> t.b;                      //Shift right logical
+        ALU_SRA  :  expected_result = t.a >>> t.b;                     //Shift right arithmetical
+        ALU_OR   :  expected_result = t.a | t.b;                       //Or
+        ALU_AND  :  expected_result = t.a & t.b;                       //And
+        default :  expected_result = '0;                               //No Op
     endcase
 
     expected_zero = expected_result == '0;

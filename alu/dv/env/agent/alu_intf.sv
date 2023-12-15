@@ -1,13 +1,17 @@
 `ifndef ALU_INTF__SV
 `define ALU_INTF__SV
 
+import alu_pkg::*;
+import common_pkg::*;
+
   interface alu_intf(input clk);
 
     // Signals
-    logic we;
-    logic [3:0] addr;
-    logic [7:0] wdata;
-    logic [7:0] rdata;
+    data_t   a;
+    data_t   b;
+    alu_op_e alu_op;
+    data_t   result;
+    logic    zero;
 
   endinterface
 

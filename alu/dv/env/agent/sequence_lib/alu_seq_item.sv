@@ -1,18 +1,23 @@
 `ifndef ALU_SEQ_ITEM__SV
 `define ALU_SEQ_ITEM__SV
 
+import alu_pkg::*;
+import common_pkg::*;
+
   class alu_seq_item extends uvm_sequence_item;
 
     // Factory Registration
     `uvm_object_utils(alu_seq_item)
 
     // Randomization Variables
-    rand logic we;
-    randc logic [3:0] addr;
-    rand logic [7:0] wdata;
-    logic [7:0] rdata;
+    rand data_t   a;
+    rand data_t   b;
+    rand alu_op_e alu_op;
+    data_t        result;
+    logic         zero;
 
-    constraint dataRange {wdata inside{[0:15]};}
+    //TODO: Add constraints for data and operations
+    // constraint c1 {a inside{[0:15]};}
 
     extern function new(string name = "alu_seq_item");
 

@@ -46,10 +46,11 @@
     alu_seq_item_h = alu_seq_item::type_id::create("alu_seq_item_h");
     forever begin
       @(posedge vintf.clk);
-      alu_seq_item_h.we     = vintf.we;
-      alu_seq_item_h.addr   = vintf.addr;
-      alu_seq_item_h.wdata  = vintf.wdata;
-      alu_seq_item_h.rdata  = vintf.rdata;
+      alu_seq_item_h.a     = vintf.a;
+      alu_seq_item_h.b   = vintf.b;
+      alu_seq_item_h.alu_op  = vintf.alu_op;
+      alu_seq_item_h.result  = vintf.result;
+      alu_seq_item_h.zero  = vintf.zero;
       mon_port.write(alu_seq_item_h);
       `uvm_info(get_full_name(), "[ALU] Written Sequence Item from Monitor", UVM_LOW)
     end

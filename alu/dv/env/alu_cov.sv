@@ -16,8 +16,8 @@
 
   function void alu_cov::write(alu_seq_item t);
     `uvm_info(get_full_name(), "[ALU] Received item in Subscriber", UVM_LOW)
-    `uvm_info(get_full_name(), $sformatf("\n[ALU] Packet Data:\n\twe: %0d,\n\taddr: %0d,\n\twdata: %0d,\n\trdata: %0d",
-      t.we, t.addr, t.wdata, t.rdata), UVM_LOW)
+    `uvm_info(get_full_name(), $sformatf("\n[ALU] Packet Data:\n\ta: %0d,\n\tb: %0d,\n\talu_op: %0d,\n\tresult: %0d,\n\tzero: %0d",
+      t.a, t.b, t.alu_op, t.result, t.zero), UVM_LOW)
   endfunction
 
 `endif

@@ -31,8 +31,8 @@
     forever begin
       sb_fifo.get(seq_item);
       `uvm_info(get_full_name(), "[ALU] Received new item in SB", UVM_LOW)
-      `uvm_info(get_full_name(), $sformatf("\n[ALU] Packet Data:\n\twe: %0d,\n\taddr: %0d,\n\twdata: %0d,\n\trdata: %0d",
-      seq_item.we, seq_item.addr, seq_item.wdata, seq_item.rdata), UVM_LOW)
+      `uvm_info(get_full_name(), $sformatf("\n[ALU] Packet Data:\n\ta: %0d,\n\tb: %0d,\n\talu_op: %0d,\n\tresult: %0d,\n\tzero: %0d",
+      seq_item.a, seq_item.b, seq_item.alu_op, seq_item.result, seq_item.zero), UVM_LOW)
     end
   endtask
 

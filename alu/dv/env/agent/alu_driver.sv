@@ -32,18 +32,18 @@
   task alu_driver::drive_task(alu_seq_item seq_item);
     `uvm_info(get_full_name(), "[ALU] Received Sequence Item in Driver", UVM_LOW)
     @(negedge vintf.clk);
-    vintf.we <= seq_item.we;
-    vintf.addr <= seq_item.addr;
-    vintf.wdata <= seq_item.wdata;
+    vintf.a <= seq_item.a;
+    vintf.a <= seq_item.b;
+    vintf.alu_op <= seq_item.alu_op;
   endtask
 
   task alu_driver::reset_phase(uvm_phase phase);
     super.reset_phase(phase);
     phase.raise_objection(this);
     `uvm_info(get_full_name(), "[ALU] Resetting DUT from Driver", UVM_NONE)
-    vintf.we     <= 'd0;
-    vintf.addr   <= 'd0;
-    vintf.wdata  <= 'd0;
+    vintf.a     <= 'd0;
+    vintf.b   <= 'd0;
+    vintf.alu_op  <= 'd0;
     @(posedge vintf.clk);
     phase.drop_objection(this);
   endtask

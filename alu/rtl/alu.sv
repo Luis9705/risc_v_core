@@ -25,7 +25,7 @@ module alu(
             ALU_SLTU :  result_o = (a_i < b_i);                    //Set less than unsigned
             ALU_XOR  :  result_o = a_i ^ b_i;                      //Exclusive or
             ALU_SRL  :  result_o = a_i >> b_i;                     //Shift right logical
-            ALU_SRA  :  result_o = a_i >>> b_i;                    //Shift right arithmetical
+            ALU_SRA  :  result_o = $signed(a_i) >>> b_i;           //Shift right arithmetical
             ALU_OR   :  result_o = a_i | b_i;                      //Or
             ALU_AND  :  result_o = a_i & b_i;                      //And
             default :  result_o = '0; 

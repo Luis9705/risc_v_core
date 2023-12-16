@@ -23,13 +23,13 @@
 
     reg_file DUT (
       .clk_i(clk),
-      .raddr_a_i(raddr_a),
-      .rdata_a_o(rdata_a),
-      .raddr_b_i(raddr_b),
-      .rdata_b_o(rdata_b),
-      .waddr_i(waddr),
-      .wdata_i(wdata),
-      .we_i(we)
+      .raddr_a_i(intf.raddr_a),
+      .rdata_a_o(intf.rdata_a),
+      .raddr_b_i(intf.raddr_b),
+      .rdata_b_o(intf.rdata_b),
+      .waddr_i(intf.waddr),
+      .wdata_i(intf.wdata),
+      .we_i(intf.we)
     );
 
     initial begin

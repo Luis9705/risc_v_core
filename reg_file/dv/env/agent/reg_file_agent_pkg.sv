@@ -16,6 +16,8 @@
     `include "reg_file_monitor.sv"
     `include "reg_file_sequencer.sv"
     `include "reg_file_agent.sv"
+    `include "reg2porta_adapter.sv"
+    `include "reg2portb_adapter.sv"
   endpackage
 
 `endif

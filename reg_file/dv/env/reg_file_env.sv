@@ -16,6 +16,10 @@
     reg_file_sb sbh;
     reg_file_cov covh;
 
+    reg_file_model  reg_model;
+    reg2porta_adapter porta_adapter;
+    reg2portb_adapter portb_adapter;
+
     extern function new (string name = "reg_file_env", uvm_component parent = null);
     extern virtual function void build_phase(uvm_phase phase);
     extern virtual function void connect_phase(uvm_phase phase);
@@ -37,6 +41,12 @@
     if(is_coverage_enable) begin
       covh = reg_file_cov::type_id::create("covh", this);
     end
+
+    reg_model = reg_file_model::type_id::create("reg_model", this);
+    reg_model.build();
+    porta_adapter = reg2porta_adapter::type_id::create("porta_adapter", this);
+    portb_adapter = reg2portb_adapter::type_id::create("portb_adapter", this);
+
     `uvm_info(get_full_name(), "[REG_FILE] Ending Build Phase", UVM_LOW)
   endfunction
 
@@ -49,6 +59,9 @@
     if(is_coverage_enable) begin
       agnth.monh.mon_port.connect(covh.analysis_export);
     end
+
+    reg_model.default_map.set_sequencer( .sequencer(agnth.seqrh), .adapter(porta_adapter) );
+
     `uvm_info(get_full_name(), "[REG_FILE] Ending Connect Phase", UVM_LOW)
   endfunction
 

@@ -34,17 +34,15 @@
 
   endclass
 
-  class reg_field_block extends uvm_reg_block;
-      `uvm_object_utils(reg_field_block)
+  class reg_file_model extends uvm_reg_block;
+      `uvm_object_utils(reg_file_model)
 
       rand x_reg x0;
       rand x_reg x1;
       rand x_reg x2;
       rand x_reg x3;
 
-      uvm_reg_map reg_map; // Block map
-
-      function new(string name = "reg_field_block");
+      function new(string name = "reg_file_model");
          super.new(name, UVM_NO_COVERAGE);
       endfunction
 
@@ -65,10 +63,13 @@
         x3.configure(this, null, "");
         x3.build();
 
-        reg_map.add_reg(x0, 32'd0, "RW");
-        reg_map.add_reg(x1, 32'd1, "RW");
-        reg_map.add_reg(x2, 32'd2, "RW");
-        reg_map.add_reg(x3, 32'd3, "RW");
+        default_map = create_map("my_map", 0, 4, UVM_LITTLE_ENDIAN);
+        default_map.add_reg(x0, 32'd0, "RW");
+        default_map.add_reg(x1, 32'd1, "RW");
+        default_map.add_reg(x2, 32'd2, "RW");
+        default_map.add_reg(x3, 32'd3, "RW");
+
+        add_hdl_path("DUT", "RTL"); 
 
         lock_model();
 

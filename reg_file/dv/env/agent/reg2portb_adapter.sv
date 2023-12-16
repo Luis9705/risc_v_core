@@ -1,3 +1,5 @@
+`ifndef REG2PORTB_ADAPTER__SV
+`define REG2PORTB_ADAPTER__SV
 
 class reg2portb_adapter extends uvm_reg_adapter;
 
@@ -50,3 +52,7 @@ class reg2portb_adapter extends uvm_reg_adapter;
     endfunction: bus2reg
 
 endclass: reg2portb_adapter
+
+`endif
+
+//End of reg2portb_adapter

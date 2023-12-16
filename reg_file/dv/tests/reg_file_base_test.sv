@@ -12,6 +12,7 @@
     extern function new(string name = "reg_file_base_test", uvm_component parent=null);
     extern virtual function void build_phase(uvm_phase phase);
     extern virtual function void connect_phase(uvm_phase phase);
+    extern virtual function void end_of_elaboration_phase(uvm_phase phase);
     extern virtual task run_phase(uvm_phase phase);
     extern virtual function void report_phase(uvm_phase phase);
   endclass
@@ -27,6 +28,11 @@
 
   function void reg_file_base_test::connect_phase(uvm_phase phase);
     super.connect_phase(phase);
+  endfunction
+
+  function void reg_file_base_test::end_of_elaboration_phase(uvm_phase phase);
+    uvm_phase run_phase = phase.find_by_name("run", 0);
+    run_phase.phase_done.set_drain_time(this, 40);
   endfunction
 
   task reg_file_base_test::run_phase(uvm_phase phase);

@@ -53,9 +53,9 @@
       reg_file_seq_item_h.waddr   <= vintf.waddr;
       reg_file_seq_item_h.wdata   <= vintf.wdata;
       reg_file_seq_item_h.we      <= vintf.we;
+      `uvm_info(get_full_name(), $sformatf("\n[REG_FILE] Monitor Packet Data:%s", reg_file_seq_item_h.sprint()), UVM_LOW)
       mon_port.write(reg_file_seq_item_h);
       `uvm_info(get_full_name(), "[REG_FILE] Written Sequence Item from Monitor", UVM_LOW)
-    `uvm_info(get_full_name(), $sformatf("\n[REG_FILE] Packet Data:%s", reg_file_seq_item_h.sprint()), UVM_LOW)
     end
   endtask
 

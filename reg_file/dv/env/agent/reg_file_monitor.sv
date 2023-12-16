@@ -47,12 +47,15 @@
     forever begin
       @(posedge vintf.clk);
       reg_file_seq_item_h.raddr_a <= vintf.raddr_a;
+      reg_file_seq_item_h.rdata_a <= vintf.rdata_a;
       reg_file_seq_item_h.raddr_b <= vintf.raddr_b;
+      reg_file_seq_item_h.rdata_b <= vintf.rdata_b;
       reg_file_seq_item_h.waddr   <= vintf.waddr;
       reg_file_seq_item_h.wdata   <= vintf.wdata;
       reg_file_seq_item_h.we      <= vintf.we;
       mon_port.write(reg_file_seq_item_h);
       `uvm_info(get_full_name(), "[REG_FILE] Written Sequence Item from Monitor", UVM_LOW)
+    `uvm_info(get_full_name(), $sformatf("\n[REG_FILE] Packet Data:%s", reg_file_seq_item_h.sprint()), UVM_LOW)
     end
   endtask
 

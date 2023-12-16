@@ -210,11 +210,11 @@ DELFILES = clean_linux
 endif
 
 cmp:
-	xvlog -work $(work) -i ../dv -i ../../common -i ../rtl -sv $(RTL) $(SEQ_LIB) $(REG) $(INTF) $(AGT) $(ENV) $(TESTS) $(TB) $(COMMON) ../../common/common_pkg.sv -L uvm
+	xvlog -work $(work) -i ../dv -i ../../common -i ../rtl -sv $(RTL) ../dv/env/agent/regs/reg_file_regs_pkg.sv $(SEQ_LIB) $(REG) $(INTF) $(AGT) $(ENV) $(TESTS) $(TB) $(COMMON) ../../common/common_pkg.sv -L uvm
 	xelab work.$(top_tb_name) -s $(top_tb_name)_sim -L uvm -timescale 1ns/1ps -debug all -cov_db_dir ./
 
 run_sim_wave:
-	xsim -wdb dv.wdb -log session.log -t logw.tcl $(top_tb_name)_sim -testplusarg "UVM_TESTNAME=reg_file_sanity_test"
+	xsim -wdb dv.wdb -log session.log -t logw.tcl $(top_tb_name)_sim -testplusarg "UVM_TESTNAME=reg_file_reg_access_test"
 	xsim dv.wdb -gui
 
 cov_rpt:
@@ -224,7 +224,7 @@ view_wave:
 	xsim dv.wdb -gui
 
 run_sim:
-	xsim -runall -log session.log $(top_tb_name)_sim -testplusarg "UVM_TESTNAME=reg_file_sanity_test"
+	xsim -runall -log session.log $(top_tb_name)_sim -testplusarg "UVM_TESTNAME=reg_file_reg_access_test"
 
 clean_linux:
 	rm -rf modelsim.* transcript* vlog.* work vsim.wlf *.log *hbs *Xil xsim.dir *.jou *.pb

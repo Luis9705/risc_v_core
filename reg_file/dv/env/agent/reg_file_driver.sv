@@ -31,6 +31,7 @@
 
   task reg_file_driver::drive_task(reg_file_seq_item seq_item);
     `uvm_info(get_full_name(), "[REG_FILE] Received Sequence Item in Driver", UVM_LOW)
+    `uvm_info(get_full_name(), $sformatf("\n[REG_FILE] Packet Data:%s", seq_item.sprint()), UVM_LOW)
     @(negedge vintf.clk);
     vintf.raddr_a <= seq_item.raddr_a;
     vintf.raddr_b <= seq_item.raddr_b;

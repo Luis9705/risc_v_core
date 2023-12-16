@@ -14,6 +14,7 @@
     // Import UVC
     `include "reg_file_base_test.sv"
     `include "reg_file_sanity_test.sv"
+    `include "reg_file_reg_access_test.sv"
 
   endpackage
 

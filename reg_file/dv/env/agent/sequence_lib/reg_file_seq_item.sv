@@ -22,12 +22,24 @@ import common_pkg::*;
     // constraint dataRange {wdata inside{[0:15]};}
 
     extern function new(string name = "reg_file_seq_item");
+    extern function void do_print( uvm_printer printer );
 
   endclass
 
   function reg_file_seq_item::new(string name = "reg_file_seq_item");
     super.new(name);
   endfunction
+
+  function void reg_file_seq_item::do_print( uvm_printer printer );
+      super.do_print( printer );
+      printer.print_string( "name",   get_name() );
+      printer.print_field_int("raddr_a", raddr_a, $bits(raddr_a), UVM_HEX);
+      printer.print_field_int("rdata_a", rdata_a, $bits(rdata_a), UVM_HEX);
+      printer.print_field_int("raddr_b", raddr_b, $bits(raddr_b), UVM_HEX);
+      printer.print_field_int("rdata_b", rdata_b, $bits(rdata_b), UVM_HEX);
+      printer.print_field_int("waddr", waddr, $bits(waddr), UVM_HEX);
+      printer.print_field_int("wdata", wdata, $bits(wdata), UVM_HEX);
+   endfunction: do_print
 
 `endif
 

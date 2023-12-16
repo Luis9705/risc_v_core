@@ -15,8 +15,8 @@ import common_pkg::*;
     rand reg_addr_t   waddr;
     rand data_t       wdata;
     rand logic        we;
-    data_t       rdata_a;
-    data_t       rdata_b;
+    data_t            rdata_a;
+    data_t            rdata_b;
 
     //TODO: Add constraints for reg_file
     // constraint dataRange {wdata inside{[0:15]};}

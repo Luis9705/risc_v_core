@@ -214,7 +214,7 @@ cmp:
 	xelab work.$(top_tb_name) -s $(top_tb_name)_sim -L uvm -timescale 1ns/1ps -debug all -cov_db_dir ./
 
 run_sim_wave:
-	xsim -wdb dv.wdb -log session.log -t logw.tcl $(top_tb_name)_sim -testplusarg "UVM_TESTNAME=reg_file_reg_access_test"
+	xsim -wdb dv.wdb -log session.log -t logw.tcl $(top_tb_name)_sim -testplusarg "UVM_TESTNAME=reg_file_sanity_test"
 	xsim dv.wdb -gui
 
 cov_rpt:
@@ -224,7 +224,7 @@ view_wave:
 	xsim dv.wdb -gui
 
 run_sim:
-	xsim -runall -log session.log $(top_tb_name)_sim -testplusarg "UVM_TESTNAME=reg_file_reg_access_test"
+	xsim -runall -log session.log $(top_tb_name)_sim -testplusarg "UVM_TESTNAME=reg_file_sanity_test"
 
 clean_linux:
 	rm -rf modelsim.* transcript* vlog.* work vsim.wlf *.log *hbs *Xil xsim.dir *.jou *.pb

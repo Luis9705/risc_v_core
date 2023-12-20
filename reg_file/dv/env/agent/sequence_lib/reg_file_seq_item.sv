@@ -39,6 +39,7 @@ import common_pkg::*;
       printer.print_field_int("rdata_b", rdata_b, $bits(rdata_b), UVM_HEX);
       printer.print_field_int("waddr", waddr, $bits(waddr), UVM_HEX);
       printer.print_field_int("wdata", wdata, $bits(wdata), UVM_HEX);
+      printer.print_field_int("we", we, $bits(we), UVM_HEX);
    endfunction: do_print
 
 `endif

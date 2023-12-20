@@ -21,10 +21,17 @@
   task reg_file_sanity_seq::body();
     super.body();
     `uvm_info(get_full_name(), "[REG_FILE] Starting Sanity Sequence", UVM_LOW)
-    repeat(17) begin
-      `uvm_do_with(req, {we==1;})
+
+    req = reg_file_seq_item::type_id::create("req"); 
+    
+    repeat(10) begin
+      start_item(req);
+      if(!req.randomize()) begin
+        `uvm_error(get_full_name(), "[REG_FILE] Could not randomize request.")
+      end
+      finish_item(req);
     end
-    // wait_for_item_done();
+
   endtask
 
 `endif
